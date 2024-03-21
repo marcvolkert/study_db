@@ -10,7 +10,8 @@
 typedef uint8_t field_number;
 typedef uint32_t field_offset;
 
-struct field_info {
+struct field_info
+{
   size_t byte_size;
   void *value;
 };

@@ -6,15 +6,17 @@
 /* === Function ===
 Takes a record and marshalls it into a byte array. The byte array
 starts with an array of offsets, followed by the data.
-The offsets array consists of num_fields + 1 elements, which point to the
-start of each field in the data section. The last offset points to the
-end of the record, i.e. the first byte after the last field.
+The offsets array consists of num_fields + 1 elements. The offset
+measures how many bytes from the offset's address a corresponding field
+starts. The last offset points to the end of the record,
+i.e. the first byte after the last field.
 The data section consists of the concatenated field values.
 */
 void *marshall_record(short num_fields, struct field_info *fields)
 {
   // first, we calculate the space required for the offset space
-  // it should be n (number of fields) times the size of field_offset + 1 (for the last offset pointing to the end of the record)
+  // it should be n (number of fields) times the size of field_offset + 1
+  // (for the last offset pointing to the end of the record)
   // e.g. if we have 256 fields, we need 256 * 4 + 4 = 1028 bytes
   int req_offset_space = num_fields * sizeof(field_offset) + sizeof(field_offset);
   // then, we calculate the space required for the data
