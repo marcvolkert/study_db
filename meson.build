@@ -8,12 +8,12 @@ unity_dep = dependency('unity')
 # ------------ record ------------
 offset_record_test = files([
   'test/record_manager/test_record.c',
-  'src/record_manager/offset_record.c']
+  'src/record_manager/impl/offset_record.c']
 )
 
 separator_record_test = files([
   'test/record_manager/test_record.c',
-  'src/record_manager/separator_record.c']
+  'src/record_manager/impl/separator_record.c']
 )
 
 test_suite_1 = executable('test_suite_1', offset_record_test,
