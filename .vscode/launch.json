@@ -5,20 +5,29 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Meson: Debug Test Suite 1",
+      "name": "Meson: Debug simple_endecoder_test",
       "type": "cppdbg",
       "request": "launch",
       "cwd": "${workspaceFolder}/build",
-      "program": "${workspaceFolder}/build/test_suite_1",
+      "program": "${workspaceFolder}/build/simple_endecoder_test",
       "MIMode": "lldb",
       "preLaunchTask": "Meson: Compile",
     },
     {
-      "name": "Meson: Debug Test Suite 2",
+      "name": "Meson: Debug offset_record_test",
       "type": "cppdbg",
       "request": "launch",
       "cwd": "${workspaceFolder}/build",
-      "program": "${workspaceFolder}/build/test_suite_2",
+      "program": "${workspaceFolder}/build/offset_record_test",
+      "MIMode": "lldb",
+      "preLaunchTask": "Meson: Compile",
+    },
+    {
+      "name": "Meson: Debug separator_record_test",
+      "type": "cppdbg",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/build",
+      "program": "${workspaceFolder}/build/separator_record_test",
       "MIMode": "lldb",
       "preLaunchTask": "Meson: Compile",
     }

@@ -1,8 +1,14 @@
+/**
+ * @file offset_record.c
+ *
+ * This file implements the record interface (record.h).
+ * It contains functions for marshalling and unmarshalling records using an offset record format.
+ **/
+
 #include "../record.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
 
 /* === Function ===
 Takes the number of fields and an array of field_info structs and calculates

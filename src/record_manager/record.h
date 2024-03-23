@@ -1,5 +1,9 @@
-/* The functions prototyped in this file will be used for generating,
- * serializing and deserializing database records. */
+/**
+ * @file record.h
+ *
+ * This file defines the record interface.
+ * Its implementations will be used to marshall and unmarshall records for and from storage.
+ **/
 
 #include "../types.h"
 #include <stddef.h>

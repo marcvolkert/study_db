@@ -1,3 +1,10 @@
+/**
+ * @file separator_record.c
+ *
+ * This file implements the record interface (record.h).
+ * It contains functions for marshalling and unmarshalling records using a separator record format.
+ **/
+
 #include "../record.h"
 #include <stdio.h>
 #include <stdlib.h>

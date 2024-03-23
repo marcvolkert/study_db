@@ -10,7 +10,20 @@
         "string_view": "c",
         "unordered_map": "c",
         "vector": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "record.h": "c",
+        "string.h": "c",
+        "stdio.h": "c",
+        "__bit_reference": "cpp",
+        "__memory": "cpp",
+        "limits": "cpp",
+        "locale": "cpp",
+        "ratio": "cpp",
+        "tuple": "cpp",
+        "types.h": "c",
+        "endecoder.h": "c",
+        "__node_handle": "c",
+        "optional": "c"
     },
     "C_Cpp.default.configurationProvider": "mesonbuild.mesonbuild",
 }

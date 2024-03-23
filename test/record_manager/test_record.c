@@ -1,5 +1,6 @@
 #include "../../src/record_manager/record.h"
 #include "../../src/types.h"
+#include "../random_types.c"
 #include "unity.c"
 #include <stdio.h>
 #include <stdlib.h>
@@ -11,8 +12,7 @@ Generates a random INTEGER field.
 */
 static struct field_info get_random_integer_field(void)
 {
-  void *value = malloc(sizeof(INTEGER));
-  *(INTEGER *)value = rand();
+  INTEGER *value = get_random_INTEGER();
   struct field_info f = {.byte_size = sizeof(INTEGER), .value = value};
   return f;
 }
@@ -22,8 +22,7 @@ Generates a random DOUBLE field.
 */
 static struct field_info get_random_double_field(void)
 {
-  void *value = malloc(sizeof(DOUBLE));
-  *(DOUBLE *)value = (DOUBLE)rand() / (DOUBLE)rand();
+  DOUBLE *value = get_random_DOUBLE();
   struct field_info f = {.byte_size = sizeof(DOUBLE), .value = value};
   return f;
 }
@@ -33,15 +32,7 @@ Generates a random VARCHAR field with length in [min, max].
 */
 static struct field_info get_random_varchar_field_with_length(u_int64_t min_length, u_int64_t max_length)
 {
-  static const char CHARSET[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-  int length = rand() % (max_length - min_length + 1) + min_length;
-  void *value = malloc(length + 1);
-  ((char *)value)[length] = '\0'; // null terminator
-  // fill value with random characters
-  for (short i = 0; i < length; i++)
-  { // -2 to exclude the null terminator
-    ((char *)value)[i] = CHARSET[rand() % (sizeof(CHARSET) - 1)];
-  }
+  VARCHAR *value = get_random_VARCHAR_with_length(min_length, max_length);
   struct field_info f = {.byte_size = strlen(value), .value = value};
   return f;
 }
