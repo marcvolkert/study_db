@@ -5,18 +5,29 @@ project('study_db', 'c',
 unity_dep = dependency('unity')
 
 # ========== UNIT TESTS ==========
-# Record
-record_test = files([
+# ------------ record ------------
+offset_record_test = files([
   'test/record_manager/test_record.c',
   'src/record_manager/offset_record.c']
 )
 
-test = executable('test_record', record_test,
+separator_record_test = files([
+  'test/record_manager/test_record.c',
+  'src/record_manager/separator_record.c']
+)
+
+test_suite_1 = executable('test_suite_1', offset_record_test,
   c_args: ['-DUNITY_INCLUDE_CONFIG_H'],
   dependencies : [unity_dep]
 )
 
-test('test_record', test)
+test_suite_2 = executable('test_suite_2', separator_record_test,
+  c_args: ['-DUNITY_INCLUDE_CONFIG_H'],
+  dependencies : [unity_dep]
+)
+
+test('test_suite_1', test_suite_1)
+test('test_suite_2', test_suite_2)
 
 # ========== EXECUTABLE ==========
 executable('study_db', 'study_db.c')

@@ -1,17 +1,26 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-  {
-        "name": "Meson: Debug test_record",
-        "type": "cppdbg",
-        "request": "launch",
-        "cwd": "${workspaceFolder}/build",
-        "program": "${workspaceFolder}/build/test_record",
-        "MIMode": "lldb",
-        "preLaunchTask": "Meson: Compile",
-  }
-]
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Meson: Debug Test Suite 1",
+      "type": "cppdbg",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/build",
+      "program": "${workspaceFolder}/build/test_suite_1",
+      "MIMode": "lldb",
+      "preLaunchTask": "Meson: Compile",
+    },
+    {
+      "name": "Meson: Debug Test Suite 2",
+      "type": "cppdbg",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/build",
+      "program": "${workspaceFolder}/build/test_suite_2",
+      "MIMode": "lldb",
+      "preLaunchTask": "Meson: Compile",
+    }
+  ]
 }
