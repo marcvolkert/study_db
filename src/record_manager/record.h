@@ -16,6 +16,8 @@ struct field_info
   void *value;
 };
 
+size_t calculate_record_size(short num_fields, struct field_info *fields);
+
 void *marshall_record(short num_fields, struct field_info *fields);
 
 struct field_info *unmarshall_record(short num_fields, void *record);

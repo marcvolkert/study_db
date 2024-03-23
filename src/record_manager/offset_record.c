@@ -3,16 +3,14 @@
 #include <stdlib.h>
 #include <string.h>
 
+
 /* === Function ===
-Takes a record and marshalls it into a byte array. The byte array
-starts with an array of offsets, followed by the data.
-The offsets array consists of num_fields + 1 elements. The offset
-measures how many bytes from the offset's address a corresponding field
-starts. The last offset points to the end of the record,
-i.e. the first byte after the last field.
-The data section consists of the concatenated field values.
+Takes the number of fields and an array of field_info structs and calculates
+the required space for the record. The space is calculated as follows:
+- The space required for the offsets is num_fields * sizeof(field_offset) + sizeof(field_offset)
+- The space required for the data is the sum of the byte sizes of all fields
 */
-void *marshall_record(short num_fields, struct field_info *fields)
+unsigned long int calculate_record_size(short num_fields, struct field_info *fields)
 {
   // first, we calculate the space required for the offset space
   // it should be n (number of fields) times the size of field_offset + 1
@@ -26,12 +24,27 @@ void *marshall_record(short num_fields, struct field_info *fields)
   {
     req_data_space += fields[i].byte_size;
   }
-  // allocate space for the record
-  int req_space = req_offset_space + req_data_space;
+  // the total space required is the sum of the offset space and the data space
+  return req_offset_space + req_data_space;
+}
+
+/* === Function ===
+Takes a record and marshalls it into a byte array. The byte array
+starts with an array of offsets, followed by the data.
+The offsets array consists of num_fields + 1 elements. The offset
+measures how many bytes from the offset's address a corresponding field
+starts. The last offset points to the end of the record,
+i.e. the first byte after the last field.
+The data section consists of the concatenated field values.
+*/
+void *marshall_record(short num_fields, struct field_info *fields)
+{
+  // calculate the required space for the record
+  size_t req_space = calculate_record_size(num_fields, fields);
   void *record = malloc(req_space);
   // write the offsets and the data
   // first, we write the regular offsets for the fields and the data
-  field_offset curr_offset = req_offset_space;
+  field_offset curr_offset = num_fields * sizeof(field_offset) + sizeof(field_offset);
   for (short i = 0; i < num_fields; i++)
   {
     // assign the offset to i-th field
